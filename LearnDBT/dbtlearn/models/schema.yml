@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_listings_cleansed
-    description: view for listings dimension
+    description: cleansed table view for Airbnb listings
     columns:
       - name: listing_id
         description: primary key for listings dimension view
@@ -11,6 +11,7 @@ models:
           - not_null
 
       - name: host_id
+        description: Host ID, referenced to host_id in dim_hosts_cleansed
         tests:
           - not_null
           - relationships:
@@ -18,11 +19,13 @@ models:
               field: host_id
 
       - name: room_type
+        description: type of room
         tests:
           - accepted_values:
               values:
                 ["Entire home/apt", "Private room", "Shared room", "Hotel room"]
 
       - name: minimum_nights
+        description: "{{ doc('dim_listings_cleansed_minimum_nights') }}"
         tests:
           - positive_value
