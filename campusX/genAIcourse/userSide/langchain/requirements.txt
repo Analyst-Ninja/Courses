@@ -31,3 +31,9 @@ streamlit
 # Pydantic
 pydantic
 pydantic[email]
+
+# Langchain Community
+langchain-community
+
+# FAISS CPU
+faiss-cpu
