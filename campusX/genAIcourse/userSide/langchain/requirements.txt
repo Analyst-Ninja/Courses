@@ -37,3 +37,6 @@ langchain-community
 
 # FAISS CPU
 faiss-cpu
+
+# Document Loaders
+pypdf
