@@ -2,7 +2,7 @@
 
 # --- SyntaxError ---
 
-# a = 5 print(a) 
+# a = 5 print(a)
 
 # --- Type Error ---
 
@@ -17,23 +17,20 @@
 # a = c --> c is not defined here
 
 # --- FileNotFoundError ---
-# f = open('somefile.txt') 
+# f = open('somefile.txt')
 
 # --- ValueError ---
 
-a = [1,2,3]
+a = [1, 2, 3]
 # a.remove(7)
 
 # --- IndexError ---
-# a[100] # Index not present 
+# a[100] # Index not present
 
 # --- KeyError ---
-a = {
-    'name' : 'Rohit',
-    'age' : 27
-}
+a = {"name": "Rohit", "age": 27}
 
-# a['job'] # KeyError 
+# a['job'] # KeyError
 
 # ---------------------------- Raise Exception ---------------------------
 
@@ -59,20 +56,23 @@ x = -5
 
 # Custom Error Class
 
+
 class ValueTooHighError(Exception):
     pass
+
 
 class ValueTooSmallError(Exception):
     def __init__(self, message, value):
         self.message = message
         self.value = value
-        
+
 
 def testValue(x):
     if x > 100:
-        raise ValueTooHighError('Value is too high')
+        raise ValueTooHighError("Value is too high")
     if x < 5:
-        raise ValueTooSmallError('Value is too small',x)
+        raise ValueTooSmallError("Value is too small", x)
+
 
 try:
     testValue(2)
@@ -80,10 +80,3 @@ except ValueTooHighError as e:
     print(e)
 except ValueTooSmallError as e:
     print(e.message, e.value)
-
-
-
-
-
-
-

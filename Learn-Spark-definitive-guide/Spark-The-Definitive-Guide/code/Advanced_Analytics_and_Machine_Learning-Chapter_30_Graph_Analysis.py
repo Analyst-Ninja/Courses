@@ -15,6 +15,7 @@ tripEdges = tripData\
 # COMMAND ----------
 
 from graphframes import GraphFrame
+
 stationGraph = GraphFrame(stationVertices, tripEdges)
 stationGraph.cache()
 
@@ -29,6 +30,7 @@ print "Total Number of Trips in Original Data: " + str(tripData.count())
 # COMMAND ----------
 
 from pyspark.sql.functions import desc
+
 stationGraph.edges.groupBy("src", "dst").count().orderBy(desc("count")).show(10)
 
 
@@ -56,6 +58,7 @@ motifs = stationGraph.find("(a)-[ab]->(b); (b)-[bc]->(c); (c)-[ca]->(a)")
 # COMMAND ----------
 
 from pyspark.sql.functions import expr
+
 motifs.selectExpr("*",
     "to_timestamp(ab.`Start Date`, 'MM/dd/yyyy HH:mm') as abStart",
     "to_timestamp(bc.`Start Date`, 'MM/dd/yyyy HH:mm') as bcStart",
@@ -71,6 +74,7 @@ motifs.selectExpr("*",
 # COMMAND ----------
 
 from pyspark.sql.functions import desc
+
 ranks = stationGraph.pageRank(resetProbability=0.15, maxIter=10)
 ranks.vertices.orderBy(desc("pagerank")).select("id", "pagerank").show(10)
 

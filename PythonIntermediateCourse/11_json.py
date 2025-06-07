@@ -1,4 +1,4 @@
-import json 
+import json
 
 # person = {
 #     'name' : 'Rohit',
@@ -15,7 +15,7 @@ import json
 
 # # Convert JSON String to Python Dict
 
-# personDict = json.loads(personJSON) 
+# personDict = json.loads(personJSON)
 # from pprint import pprint
 
 # # From file'
@@ -23,23 +23,23 @@ import json
 #     personDict = json.load(file)
 #     print(personDict)
 
+
 class User:
 
     def __init__(self, name, age):
         self.name = name
         self.age = age
 
-user = User('Rohit', 27)
+
+user = User("Rohit", 27)
+
 
 def encode_user(obj):
     if isinstance(obj, User):
-        return {
-            'name' : obj.name,
-            'age' : obj.age,
-            obj.__class__.__name__ : True
-        }
+        return {"name": obj.name, "age": obj.age, obj.__class__.__name__: True}
     else:
-        raise TypeError('Object of type User is not JSON serializable')
+        raise TypeError("Object of type User is not JSON serializable")
+
 
 userJSON = json.dumps(user, indent=4, default=encode_user)
 

@@ -1,16 +1,20 @@
 """
 Streaming data consumer
 """
+
 from datetime import datetime
-from kafka import KafkaConsumer
+
 import mysql.connector
+from kafka import KafkaConsumer
 
-TOPIC='toll_data'
-DATABASE = 'toll_db'
-USERNAME = 'root'
-PASSWORD = '1234'
+TOPIC = "toll_data"
+DATABASE = "toll_db"
+USERNAME = "root"
+PASSWORD = "1234"
 
-connection = mysql.connector.connect(host='localhost', database=DATABASE, user=USERNAME, password=PASSWORD)
+connection = mysql.connector.connect(
+    host="localhost", database=DATABASE, user=USERNAME, password=PASSWORD
+)
 
 cursor = connection.cursor()
 
@@ -27,7 +31,7 @@ for msg in consumer:
     # Transform the date format to suit the database schema
     (timestamp, vehcile_id, vehicle_type, plaza_id) = message.split(",")
 
-    dateobj = datetime.strptime(timestamp, '%a %b %d %H:%M:%S %Y')
+    dateobj = datetime.strptime(timestamp, "%a %b %d %H:%M:%S %Y")
     timestamp = dateobj.strftime("%Y-%m-%d %H:%M:%S")
 
     # Loading data into the database table
@@ -37,4 +41,3 @@ for msg in consumer:
     print(f"A {vehicle_type} was inserted into the database")
     connection.commit()
 connection.close()
-

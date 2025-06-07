@@ -1,5 +1,5 @@
 # Euclideon Approach
-def gcd(a,b):
+def gcd(a, b):
     while a != b:
         if a > b:
             a = a - b
@@ -7,13 +7,16 @@ def gcd(a,b):
             b = b - a
     return a
 
-print(gcd(15,17)) 
+
+print(gcd(15, 17))
+
 
 # Optimised Euclideon Approach
-def gcd(a,b):
+def gcd(a, b):
     if b == 0:
-        return a 
-    
+        return a
+
     return gcd(b, a % b)
 
-print(gcd(12,15)) 
+
+print(gcd(12, 15))

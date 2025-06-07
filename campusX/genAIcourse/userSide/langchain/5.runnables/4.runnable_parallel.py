@@ -1,30 +1,22 @@
 from dotenv import load_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import PromptTemplate
+from langchain.schema.runnable import RunnableParallel, RunnableSequence
 from langchain_core.output_parsers import StrOutputParser
-from langchain.schema.runnable import RunnableSequence, RunnableParallel
+from langchain_core.prompts import PromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv("../.env")
 
 tweet_prompt = PromptTemplate(
-    template="Write a tweet about the topic: {topic}",
-    input_variables=['topic']
+    template="Write a tweet about the topic: {topic}", input_variables=["topic"]
 )
 
 linkedin_prompt = PromptTemplate(
-    template="Write a LinkedIn post about the topic: {topic}",
-    input_variables=['topic']
+    template="Write a LinkedIn post about the topic: {topic}", input_variables=["topic"]
 )
 
-tweet_llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    temperature=0.9
-)
+tweet_llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.9)
 
-linkedin_llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    temperature=0.5
-)
+linkedin_llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.5)
 
 parser = StrOutputParser()
 
@@ -43,9 +35,8 @@ parser = StrOutputParser()
 parallel_chain = RunnableParallel(
     {
         "tweet": RunnableSequence(tweet_prompt, tweet_llm, parser),
-        "linkedIn": RunnableSequence(linkedin_prompt, linkedin_llm, parser)
+        "linkedIn": RunnableSequence(linkedin_prompt, linkedin_llm, parser),
     }
 )
 
-print(parallel_chain.invoke({"topic":"AI"}))
-
+print(parallel_chain.invoke({"topic": "AI"}))

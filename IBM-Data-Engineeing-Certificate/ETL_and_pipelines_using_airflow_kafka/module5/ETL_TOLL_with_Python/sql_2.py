@@ -1,17 +1,18 @@
-from sqlalchemy import create_engine
 import pandas as pd
-
+from sqlalchemy import create_engine
 
 db = create_engine("postgresql://postgres:1234@localhost:5432/mydb2")
-conn = db.connect() 
+conn = db.connect()
 
-df = pd.read_csv('/home/de-ninja/Documents/Courses/IBM_DE_Certificate/ETL_and_pipelines_using_airflow_kafka/module5/ETL_TOLL_with_Python/staging/transformed_data.csv')
+df = pd.read_csv(
+    "/home/de-ninja/Documents/Courses/IBM_DE_Certificate/ETL_and_pipelines_using_airflow_kafka/module5/ETL_TOLL_with_Python/staging/transformed_data.csv"
+)
 
 # conn.execute("""DROP TABLE IF EXISTS toll_data""")
 
 # conn.execute(
 #     """
-#     CREATE TABLE mydb2.public.toll_data 
+#     CREATE TABLE mydb2.public.toll_data
 #     (
 #         rowid INT PRIMARY KEY,
 #         Timestamp TEXT,
@@ -45,6 +46,6 @@ with db.connect() as connection:
     connection.execute(create_table_sql)
 
 
-df.to_sql(name='toll_data', con=conn, index=False, if_exists='replace')
+df.to_sql(name="toll_data", con=conn, index=False, if_exists="replace")
 
 conn.close()

@@ -9,6 +9,7 @@ def mean(numbers):
     # The mean (or average) is the total sum divided by the number of elements.
     return sum(numbers) / len(numbers)  # Return the mean value.
 
+
 def median(numbers):
     """
     This function returns the median of the given list of numbers.
@@ -25,16 +26,22 @@ def median(numbers):
         # If the list has an even number of elements, find the two middle numbers.
         # 'len(numbers) // 2' computes the index of the second middle element in a zero-indexed list.
         # 'len(numbers) // 2 - 1' computes the index of the first middle element.
-        median1 = numbers[len(numbers) // 2]  # The higher index of the two middle values.
-        median2 = numbers[len(numbers) // 2 - 1]  # The lower index of the two middle values.
-        
+        median1 = numbers[
+            len(numbers) // 2
+        ]  # The higher index of the two middle values.
+        median2 = numbers[
+            len(numbers) // 2 - 1
+        ]  # The lower index of the two middle values.
+
         # Calculate the median by taking the average of the two middle numbers.
         # This is done by adding the two middle values and dividing by 2.
         mymedian = (median1 + median2) / 2  # Average of the two middle values.
     else:
         # If the list has an odd number of elements, return the middle number.
         # 'len(numbers) // 2' computes the index of the middle element.
-        mymedian = numbers[len(numbers) // 2]  # The middle value for lists with an odd number of elements.
+        mymedian = numbers[
+            len(numbers) // 2
+        ]  # The middle value for lists with an odd number of elements.
 
     # Return the calculated median value.
     return mymedian

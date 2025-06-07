@@ -1,16 +1,16 @@
 # itertools : product, permutations, combinations, accumulate, groupby, & infnite iterators
 
-from itertools import product, permutations, combinations, combinations_with_replacement
+from itertools import combinations, combinations_with_replacement, permutations, product
 
 # 1. product
-a = [1,2,3]
+a = [1, 2, 3]
 b = [3]
 
 # prod = product(a,b, repeat=2)
 # print(list(prod))
 
 # 2. permuations
-a = [1,2,3]
+a = [1, 2, 3]
 
 # perm = permutations(a)
 # print(list(perm))
@@ -44,7 +44,9 @@ a = [1,2,3]
 
 # 5. groupby
 from itertools import groupby
-a = [1,1,1,2,3,3,4]
+
+a = [1, 1, 1, 2, 3, 3, 4]
+
 
 def smaller_than_3(x):
     return x < 3
@@ -56,33 +58,17 @@ def smaller_than_3(x):
 # for key,val in groupObj:
 #     print(key, list(val))
 
-# example 2 = 
+# example 2 =
 
-persons = \
-[
-    {
-        'name' : 'A',
-        'age' : 2
-    },
-    {
-        'name' : 'B',
-        'age' : 13
-    },
-    {
-        'name' : 'C',
-        'age' : 40
-    },
-    {
-        'name' : 'D',
-        'age' : 50
-    },
-    {
-        'name' : 'E',
-        'age' : 50
-    },
+persons = [
+    {"name": "A", "age": 2},
+    {"name": "B", "age": 13},
+    {"name": "C", "age": 40},
+    {"name": "D", "age": 50},
+    {"name": "E", "age": 50},
 ]
 
-# person_group = groupby(persons, key = lambda x : x['age'] <= 18) # group in adult 
+# person_group = groupby(persons, key = lambda x : x['age'] <= 18) # group in adult
 # person_group = groupby(persons, key = lambda x : x['age']) # group on the basis of age group
 
 # for key, val in person_group:
@@ -98,7 +84,7 @@ from itertools import count, cycle, repeat
 #         break
 
 
-a = [1,2,3,4]
+a = [1, 2, 3, 4]
 
 # for i in cycle(a):
 #     print(i)

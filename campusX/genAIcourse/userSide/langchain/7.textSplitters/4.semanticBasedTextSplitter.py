@@ -1,7 +1,8 @@
-from dotenv import load_dotenv
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_experimental.text_splitter import SemanticChunker
 from pprint import pprint
+
+from dotenv import load_dotenv
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 load_dotenv("../.env")
 
@@ -13,11 +14,9 @@ Terrorism is a big danger to peace and safety. It causes harm to people and crea
 """
 
 splitter = SemanticChunker(
-    embeddings=GoogleGenerativeAIEmbeddings(
-        model="models/text-embedding-004"
-    ),
+    embeddings=GoogleGenerativeAIEmbeddings(model="models/text-embedding-004"),
     breakpoint_threshold_type="standard_deviation",
-    breakpoint_threshold_amount=0.3
+    breakpoint_threshold_amount=0.3,
 )
 
 res = splitter.create_documents(texts=[sample])

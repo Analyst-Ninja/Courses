@@ -11,20 +11,19 @@ connentURL = "mongodb://127.0.0.1:27017"
 conn = MongoClient(connentURL)
 print(conn)
 
-print('Getting the List of DBs')
+print("Getting the List of DBs")
 
 dbs = conn.list_database_names()
 
-print('Printing Databases')
+print("Printing Databases")
 for i in range(len(dbs)):
-    print(f'{i} --> {dbs[i]}')
+    print(f"{i} --> {dbs[i]}")
 
-print('Closing Connection')
+print("Closing Connection")
 
 conn.close()
 
 # mydb = conn.myDatabase
-
 
 
 # print(mydb)
@@ -40,5 +39,3 @@ conn.close()
 # print('Closing Connection')
 
 # conn.close()
-
-

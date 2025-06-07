@@ -1,6 +1,7 @@
-from multiprocessing import Process, Value, Array, Lock
-from time import sleep
 import os
+from multiprocessing import Array, Lock, Process, Value
+from time import sleep
+
 
 def add_100(number, lock):
     for i in range(100):
@@ -9,14 +10,14 @@ def add_100(number, lock):
             number.value += 1
 
 
-if __name__ == '__main__':
-    shared_number = Value('i',0)
+if __name__ == "__main__":
+    shared_number = Value("i", 0)
     # 'i' --> DataType as String
     # 0 --> Start Value
 
     lock = Lock()
 
-    print(f'Number at begining {shared_number.value}')
+    print(f"Number at begining {shared_number.value}")
 
     p1 = Process(target=add_100, args=[shared_number, lock])
     p2 = Process(target=add_100, args=[shared_number, lock])

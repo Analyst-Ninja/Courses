@@ -4,6 +4,7 @@ df = spark.read.load("/data/regression")
 # COMMAND ----------
 
 from pyspark.ml.regression import LinearRegression
+
 lr = LinearRegression().setMaxIter(10).setRegParam(0.3).setElasticNetParam(0.8)
 print lr.explainParams()
 lrModel = lr.fit(df)
@@ -22,6 +23,7 @@ print summary.r2
 # COMMAND ----------
 
 from pyspark.ml.regression import GeneralizedLinearRegression
+
 glr = GeneralizedLinearRegression()\
   .setFamily("gaussian")\
   .setLink("identity")\
@@ -35,6 +37,7 @@ glrModel = glr.fit(df)
 # COMMAND ----------
 
 from pyspark.ml.regression import DecisionTreeRegressor
+
 dtr = DecisionTreeRegressor()
 print dtr.explainParams()
 dtrModel = dtr.fit(df)
@@ -42,8 +45,8 @@ dtrModel = dtr.fit(df)
 
 # COMMAND ----------
 
-from pyspark.ml.regression import RandomForestRegressor
-from pyspark.ml.regression import GBTRegressor
+from pyspark.ml.regression import GBTRegressor, RandomForestRegressor
+
 rf =  RandomForestRegressor()
 print rf.explainParams()
 rfModel = rf.fit(df)
@@ -54,10 +57,11 @@ gbtModel = gbt.fit(df)
 
 # COMMAND ----------
 
+from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import GeneralizedLinearRegression
-from pyspark.ml import Pipeline
 from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
+
 glr = GeneralizedLinearRegression().setFamily("gaussian").setLink("identity")
 pipeline = Pipeline().setStages([glr])
 params = ParamGridBuilder().addGrid(glr.regParam, [0, 0.5, 1]).build()
@@ -76,6 +80,7 @@ model = cv.fit(df)
 # COMMAND ----------
 
 from pyspark.mllib.evaluation import RegressionMetrics
+
 out = model.transform(df)\
   .select("prediction", "label").rdd.map(lambda x: (float(x[0]), float(x[1])))
 metrics = RegressionMetrics(out)

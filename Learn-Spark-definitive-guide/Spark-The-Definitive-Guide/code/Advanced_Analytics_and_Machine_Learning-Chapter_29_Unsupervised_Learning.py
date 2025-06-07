@@ -1,4 +1,5 @@
 from pyspark.ml.feature import VectorAssembler
+
 va = VectorAssembler()\
   .setInputCols(["Quantity", "UnitPrice"])\
   .setOutputCol("features")
@@ -17,6 +18,7 @@ sales.cache()
 # COMMAND ----------
 
 from pyspark.ml.clustering import KMeans
+
 km = KMeans().setK(5)
 print km.explainParams()
 kmModel = km.fit(sales)
@@ -36,6 +38,7 @@ for center in centers:
 # COMMAND ----------
 
 from pyspark.ml.clustering import BisectingKMeans
+
 bkm = BisectingKMeans().setK(5).setMaxIter(5)
 bkmModel = bkm.fit(sales)
 
@@ -54,6 +57,7 @@ for center in centers:
 # COMMAND ----------
 
 from pyspark.ml.clustering import GaussianMixture
+
 gmm = GaussianMixture().setK(5)
 print gmm.explainParams()
 model = gmm.fit(sales)
@@ -71,7 +75,8 @@ summary.probability.show()
 
 # COMMAND ----------
 
-from pyspark.ml.feature import Tokenizer, CountVectorizer
+from pyspark.ml.feature import CountVectorizer, Tokenizer
+
 tkn = Tokenizer().setInputCol("Description").setOutputCol("DescOut")
 tokenized = tkn.transform(sales.drop("features"))
 cv = CountVectorizer()\
@@ -88,6 +93,7 @@ prepped = cvFitted.transform(tokenized)
 # COMMAND ----------
 
 from pyspark.ml.clustering import LDA
+
 lda = LDA().setK(10).setMaxIter(5)
 print lda.explainParams()
 model = lda.fit(prepped)

@@ -1,5 +1,6 @@
-from langchain.text_splitter import RecursiveCharacterTextSplitter, Language
 from pprint import pprint
+
+from langchain.text_splitter import Language, RecursiveCharacterTextSplitter
 
 python_text = """
 # Base class
@@ -60,9 +61,7 @@ print_account_details(acc2)
 """
 
 splitter = RecursiveCharacterTextSplitter.from_language(
-    chunk_size=1000,
-    chunk_overlap=0,
-    language=Language.PYTHON
+    chunk_size=1000, chunk_overlap=0, language=Language.PYTHON
 )
 
 res = splitter.split_text(text=python_text)

@@ -3,7 +3,7 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader
 loader = DirectoryLoader(
     path="/home/de-ninja/Desktop/ObsidianNotes/MyNotes/Courses/campusX/genAI/langchain/",
     glob="*.md",
-    loader_cls=TextLoader
+    loader_cls=TextLoader,
 )
 
 # docs = loader.load()
@@ -16,4 +16,3 @@ print(next(docs).metadata)
 print(next(docs).metadata)
 print(next(docs).metadata)
 print(next(docs).metadata)
-

@@ -5,6 +5,7 @@ bInput = spark.read.format("parquet").load("/data/binary-classification")\
 # COMMAND ----------
 
 from pyspark.ml.classification import LogisticRegression
+
 lr = LogisticRegression()
 print lr.explainParams() # see all parameters
 lrModel = lr.fit(bInput)
@@ -32,6 +33,7 @@ summary.objectiveHistory
 # COMMAND ----------
 
 from pyspark.ml.classification import DecisionTreeClassifier
+
 dt = DecisionTreeClassifier()
 print dt.explainParams()
 dtModel = dt.fit(bInput)
@@ -40,6 +42,7 @@ dtModel = dt.fit(bInput)
 # COMMAND ----------
 
 from pyspark.ml.classification import RandomForestClassifier
+
 rfClassifier = RandomForestClassifier()
 print rfClassifier.explainParams()
 trainedModel = rfClassifier.fit(bInput)
@@ -48,6 +51,7 @@ trainedModel = rfClassifier.fit(bInput)
 # COMMAND ----------
 
 from pyspark.ml.classification import GBTClassifier
+
 gbtClassifier = GBTClassifier()
 print gbtClassifier.explainParams()
 trainedModel = gbtClassifier.fit(bInput)
@@ -56,6 +60,7 @@ trainedModel = gbtClassifier.fit(bInput)
 # COMMAND ----------
 
 from pyspark.ml.classification import NaiveBayes
+
 nb = NaiveBayes()
 print nb.explainParams()
 trainedModel = nb.fit(bInput.where("label != 0"))
@@ -64,6 +69,7 @@ trainedModel = nb.fit(bInput.where("label != 0"))
 # COMMAND ----------
 
 from pyspark.mllib.evaluation import BinaryClassificationMetrics
+
 out = model.transform(bInput)\
   .select("prediction", "label")\
   .rdd.map(lambda x: (float(x[0]), float(x[1])))

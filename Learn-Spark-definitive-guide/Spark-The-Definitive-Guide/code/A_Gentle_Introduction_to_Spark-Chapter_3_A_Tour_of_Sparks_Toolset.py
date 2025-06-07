@@ -9,7 +9,8 @@ staticSchema = staticDataFrame.schema
 
 # COMMAND ----------
 
-from pyspark.sql.functions import window, column, desc, col
+from pyspark.sql.functions import col, column, desc, window
+
 staticDataFrame\
   .selectExpr(
     "CustomerId",
@@ -65,7 +66,8 @@ spark.sql("""
 
 # COMMAND ----------
 
-from pyspark.sql.functions import date_format, col
+from pyspark.sql.functions import col, date_format
+
 preppedDataFrame = staticDataFrame\
   .na.fill(0)\
   .withColumn("day_of_week", date_format(col("InvoiceDate"), "EEEE"))\
@@ -83,6 +85,7 @@ testDataFrame = preppedDataFrame\
 # COMMAND ----------
 
 from pyspark.ml.feature import StringIndexer
+
 indexer = StringIndexer()\
   .setInputCol("day_of_week")\
   .setOutputCol("day_of_week_index")
@@ -91,6 +94,7 @@ indexer = StringIndexer()\
 # COMMAND ----------
 
 from pyspark.ml.feature import OneHotEncoder
+
 encoder = OneHotEncoder()\
   .setInputCol("day_of_week_index")\
   .setOutputCol("day_of_week_encoded")
@@ -126,6 +130,7 @@ transformedTraining = fittedPipeline.transform(trainDataFrame)
 # COMMAND ----------
 
 from pyspark.ml.clustering import KMeans
+
 kmeans = KMeans()\
   .setK(20)\
   .setSeed(1L)

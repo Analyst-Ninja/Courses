@@ -1,16 +1,35 @@
 """
 Top Traffic Simulator
 """
-from time import sleep, time, ctime
-from random import random, randint, choice
+
+from random import choice, randint, random
+from time import ctime, sleep, time
+
 from kafka import KafkaProducer
-producer = KafkaProducer(bootstrap_servers='localhost:9092')
 
-TOPIC = 'toll_data'
+producer = KafkaProducer(bootstrap_servers="localhost:9092")
 
-VEHICLE_TYPES = ("car", "car", "car", "car", "car", "car", "car", "car",
-                 "car", "car", "car", "truck", "truck", "truck",
-                 "truck", "van", "van")
+TOPIC = "toll_data"
+
+VEHICLE_TYPES = (
+    "car",
+    "car",
+    "car",
+    "car",
+    "car",
+    "car",
+    "car",
+    "car",
+    "car",
+    "car",
+    "car",
+    "truck",
+    "truck",
+    "truck",
+    "truck",
+    "van",
+    "van",
+)
 for _ in range(100000):
     vehicle_id = randint(10000, 10000000)
     vehicle_type = choice(VEHICLE_TYPES)

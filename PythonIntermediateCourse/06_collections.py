@@ -2,9 +2,8 @@
 
 from collections import Counter
 
-
 # 1. Counter
-string = 'aaaaabbbbbccc'
+string = "aaaaabbbbbccc"
 
 my_counter = Counter(string)
 
@@ -61,6 +60,7 @@ my_counter = Counter(string)
 # 5. deque() --> Double Ended Queue
 
 from collections import deque
+
 d = deque()
 
 d.append(1)
@@ -71,8 +71,8 @@ d.appendleft(3)
 d.pop()
 d.popleft()
 
-d.extend([4,5,6])
-d.extendleft([7,8,9])
+d.extend([4, 5, 6])
+d.extendleft([7, 8, 9])
 
 d.rotate(1)
 d.rotate(-1)

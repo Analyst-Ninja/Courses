@@ -1,21 +1,30 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
-from dotenv import load_dotenv
-from pydantic import BaseModel, Field
 from typing import Literal, Optional
+
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+from pydantic import BaseModel, Field
 
 load_dotenv(dotenv_path="../.env")
 
 model = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 
+
 # Schema
 class Review(BaseModel):
 
-    key_themes: list[str] = Field(description="Write down all the key themes discussed in the review in a list")
-    summary: str = Field(description="Write down all the key themes discussed in the review in a list")
-    sentiment: Literal['pos', 'neg'] = Field(description="Return sentiment of the review: pos/ neg")
+    key_themes: list[str] = Field(
+        description="Write down all the key themes discussed in the review in a list"
+    )
+    summary: str = Field(
+        description="Write down all the key themes discussed in the review in a list"
+    )
+    sentiment: Literal["pos", "neg"] = Field(
+        description="Return sentiment of the review: pos/ neg"
+    )
     pros: Optional[list[str]] = Field(description="Write all the pros in a list")
     cons: Optional[list[str]] = Field(description="Write all the cons in a list")
     name: Optional[str] = Field(description="Write down the name of the reviewer")
+
 
 structured_model = model.with_structured_output(Review)
 
@@ -39,9 +48,8 @@ result = structured_model.invoke(
 
 # Getting the output in python Dict
 result_dict = result.model_dump()
-print(result_dict['name'])
+print(result_dict["name"])
 
 # Getting the output in JSON
 result_json = result.model_dump_json()
 print(result_json)
-

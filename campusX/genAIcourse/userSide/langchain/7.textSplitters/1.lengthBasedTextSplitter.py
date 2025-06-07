@@ -1,5 +1,4 @@
 from langchain.text_splitter import CharacterTextSplitter
-
 from langchain_community.document_loaders import TextLoader
 
 # text = """
@@ -9,19 +8,15 @@ from langchain_community.document_loaders import TextLoader
 # """
 
 loader = TextLoader(
-    encoding='utf-8',
-    file_path='/media/de-ninja/codebase/Courses/campusX/genAIcourse/userSide/langchain/7.textSplitters/hp4.txt'
+    encoding="utf-8",
+    file_path="/media/de-ninja/codebase/Courses/campusX/genAIcourse/userSide/langchain/7.textSplitters/hp4.txt",
 )
 
 docs = loader.load()
 
 # print(res, len(res))
 
-splitter = CharacterTextSplitter(
-    chunk_size=100,
-    chunk_overlap=0,
-    separator=""
-)
+splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0, separator="")
 
 # res = splitter.split_text(text=text) //  Split Text
 

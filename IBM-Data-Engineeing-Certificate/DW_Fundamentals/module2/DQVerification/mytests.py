@@ -1,92 +1,93 @@
-from dataqualitychecks import check_for_nulls
-from dataqualitychecks import check_for_min_max
-from dataqualitychecks import check_for_valid_values
-from dataqualitychecks import check_for_duplicates
+from dataqualitychecks import (
+    check_for_duplicates,
+    check_for_min_max,
+    check_for_nulls,
+    check_for_valid_values,
+)
 
-
-test1={
-	"testname":"Check for nulls",
-	"test":check_for_nulls,
-	"column": "monthid",
-	"table": "DimMonth"
+test1 = {
+    "testname": "Check for nulls",
+    "test": check_for_nulls,
+    "column": "monthid",
+    "table": "DimMonth",
 }
 
 
-test2={
-	"testname":"Check for min and max",
-	"test":check_for_min_max,
-	"column": "month",
-	"table": "DimMonth",
-	"minimum":1,
-	"maximum":12
+test2 = {
+    "testname": "Check for min and max",
+    "test": check_for_min_max,
+    "column": "month",
+    "table": "DimMonth",
+    "minimum": 1,
+    "maximum": 12,
 }
 
 
-test3={
-	"testname":"Check for valid values",
-	"test":check_for_valid_values,
-	"column": "category",
-	"table": "DimCustomer",
-	"valid_values":{'Individual','Company'}
+test3 = {
+    "testname": "Check for valid values",
+    "test": check_for_valid_values,
+    "column": "category",
+    "table": "DimCustomer",
+    "valid_values": {"Individual", "Company"},
 }
 
 
-test4={
-	"testname":"Check for duplicates",
-	"test":check_for_duplicates,
-	"column": "monthid",
-	"table": "DimMonth"
+test4 = {
+    "testname": "Check for duplicates",
+    "test": check_for_duplicates,
+    "column": "monthid",
+    "table": "DimMonth",
 }
 
-test5={
-    "testname":"Check for nulls",
-    "test":check_for_nulls,
+test5 = {
+    "testname": "Check for nulls",
+    "test": check_for_nulls,
     "column": "year",
-    "table": "DimMonth"
+    "table": "DimMonth",
 }
 
-test6={
-    "testname":"Check for min and max",
-    "test":check_for_min_max,
+test6 = {
+    "testname": "Check for min and max",
+    "test": check_for_min_max,
     "column": "quarter",
     "table": "DimMonth",
-    "minimum":1,
-    "maximum":4
+    "minimum": 1,
+    "maximum": 4,
 }
 
-test7={
-    "testname":"Check for valid values",
-    "test":check_for_valid_values,
+test7 = {
+    "testname": "Check for valid values",
+    "test": check_for_valid_values,
     "column": "quartername",
     "table": "DimMonth",
-    "valid_values":{'Q1','Q2','Q3','Q4'}
+    "valid_values": {"Q1", "Q2", "Q3", "Q4"},
 }
 
-test8={
-    "testname":"Check for duplicates",
-    "test":check_for_duplicates,
+test8 = {
+    "testname": "Check for duplicates",
+    "test": check_for_duplicates,
     "column": "customerid",
-    "table": "DimCustomer"
+    "table": "DimCustomer",
 }
 
-test9={
-    "testname":"Check for nulls",
-    "test":check_for_nulls,
+test9 = {
+    "testname": "Check for nulls",
+    "test": check_for_nulls,
     "column": "billedamount",
-    "table": "FactBilling"
+    "table": "FactBilling",
 }
 
-test10={
-    "testname":"Check for duplicates",
-    "test":check_for_duplicates,
+test10 = {
+    "testname": "Check for duplicates",
+    "test": check_for_duplicates,
     "column": "billid",
-    "table": "FactBilling"
+    "table": "FactBilling",
 }
 
-test11={
-    "testname":"Check for valid values",
-    "test":check_for_valid_values,
+test11 = {
+    "testname": "Check for valid values",
+    "test": check_for_valid_values,
     "column": "quarter",
     "table": "DimMonth",
-    "valid_values":{1,2,3,4}
+    "valid_values": {1, 2, 3, 4},
 }

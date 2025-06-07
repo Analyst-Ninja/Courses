@@ -1,11 +1,13 @@
-from multiprocessing import Process, Value, Array
 import os
+from multiprocessing import Array, Process, Value
+
 
 def square_numbers():
     for i in range(100):
-        print(i*i)
+        print(i * i)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     processes = []
 
     num_process = os.cpu_count()
@@ -18,4 +20,4 @@ if __name__ == '__main__':
         process.start()
 
     for process in processes:
-        process.join() 
+        process.join()

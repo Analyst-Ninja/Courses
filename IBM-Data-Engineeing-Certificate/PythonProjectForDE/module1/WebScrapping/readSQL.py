@@ -1,7 +1,8 @@
-import pandas as pd
 import sqlite3
 
-conn = sqlite3.connect('Movies.db')
+import pandas as pd
+
+conn = sqlite3.connect("Movies.db")
 
 query = """
         SELECT * FROM Top_50

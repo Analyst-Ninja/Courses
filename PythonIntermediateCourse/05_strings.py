@@ -14,7 +14,7 @@ myString = "Hello World"
 # print(myString.startswith('Hello'))
 # print(myString.endswith('Hello'))
 
-# print(myString.find('o')) 
+# print(myString.find('o'))
 # It will give the index for character to find in a string
 # Or it will return -1 if the character is present
 
@@ -48,7 +48,7 @@ myString = "Hello World"
 # end = time.time()
 # print(end - start)
 
-# # 2. Good 
+# # 2. Good
 # start = time.time()
 # joinedStr = ''.join(l)
 # end = time.time()
@@ -57,7 +57,7 @@ myString = "Hello World"
 # Formatting the String
 
 # 1. Way 1 - Using %
-var = 'Tom'
+var = "Tom"
 intNum = 3
 floatNum = 3.1456747
 print("my string is %s" % var)
@@ -66,14 +66,13 @@ print("my string is %f" % floatNum)
 print("my string is %.2f" % floatNum)
 
 # 2. Way 2 - Using format method
-var = 'Tom'
+var = "Tom"
 intNum = 3
 floatNum = 3.1456747
-print('My string is {0} {1} {2} {2:.2f}'.format(var,intNum, floatNum))
+print("My string is {0} {1} {2} {2:.2f}".format(var, intNum, floatNum))
 
 # 3. Way 3 - Using f-string
-var = 'Tom'
+var = "Tom"
 intNum = 3
 floatNum = 3.1456747
-print(f'My string is {var} {intNum * 2} {floatNum} {round(floatNum,2)}')
-
+print(f"My string is {var} {intNum * 2} {floatNum} {round(floatNum,2)}")

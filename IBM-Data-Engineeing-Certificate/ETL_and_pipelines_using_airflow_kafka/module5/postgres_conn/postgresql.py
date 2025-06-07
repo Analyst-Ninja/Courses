@@ -1,19 +1,22 @@
-from sqlalchemy import create_engine, text
 import pandas as pd
+from sqlalchemy import create_engine, text
 
 # Create a connection to the PostgreSQL database
 db = create_engine("postgresql://postgres:1234@localhost:5432/postgres")
-conn = db.connect() 
+conn = db.connect()
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv('/home/de-ninja/Documents/Courses/IBM_DE_Certificate/ETL_and_pipelines_using_airflow_kafka/module5/ETL_TOLL_with_Python/staging/transformed_data.csv')
+df = pd.read_csv(
+    "/home/de-ninja/Documents/Courses/IBM_DE_Certificate/ETL_and_pipelines_using_airflow_kafka/module5/ETL_TOLL_with_Python/staging/transformed_data.csv"
+)
 
 # Drop the table if it exists
 conn.execute(text("DROP TABLE IF EXISTS postgres.public.toll_data;"))
 
 # Create the table
 conn.execute(
-    text("""
+    text(
+        """
     CREATE TABLE postgres.public.toll_data 
     (
         rowid INT PRIMARY KEY,
@@ -30,7 +33,7 @@ conn.execute(
     )
 )
 
-df.to_sql(name='toll_data', con=conn, index=False, if_exists='replace',schema='public')
+df.to_sql(name="toll_data", con=conn, index=False, if_exists="replace", schema="public")
 
 conn.commit()
 

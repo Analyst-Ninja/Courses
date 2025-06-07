@@ -25,22 +25,24 @@
 
 # # Join the processes
 # for p in processes:
-#     p.join() 
+#     p.join()
 
 # print('End Main')
 
 # ------------------- Multithreading ----------------------
 
-from threading import Thread
 import os
 import time
+from threading import Thread
+
 
 def square_numbers():
     prodList = []
     for i in range(100):
         prodList.append(i * i)
-        time.sleep(.1)
+        time.sleep(0.1)
     return prodList
+
 
 threads = []
 num_threads = 10
@@ -56,6 +58,6 @@ for t in threads:
 
 # Join the threads
 for t in threads:
-    t.join() 
+    t.join()
 
-print('End Main')
+print("End Main")

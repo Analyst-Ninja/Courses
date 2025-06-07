@@ -1,6 +1,7 @@
-from threading import Thread, Lock, current_thread
 from queue import Queue
+from threading import Lock, Thread, current_thread
 from time import sleep
+
 
 def worker(q, lock):
     while True:
@@ -11,7 +12,7 @@ def worker(q, lock):
         q.task_done()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     q = Queue()
     lock = Lock()

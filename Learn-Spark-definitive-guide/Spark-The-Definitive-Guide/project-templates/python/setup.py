@@ -1,5 +1,3 @@
 from setuptools import setup
 
-requirements = [
-    pyspark
-]
+requirements = [pyspark]

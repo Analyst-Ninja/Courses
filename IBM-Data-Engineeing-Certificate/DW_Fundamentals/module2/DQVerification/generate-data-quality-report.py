@@ -1,34 +1,40 @@
 import os
-import psycopg2
-import pandas as pd
-from tabulate import tabulate
 from pprint import pprint
 
 import mytests
+import pandas as pd
+import psycopg2
+
 # import the data quality checks
-from dataqualitychecks import check_for_nulls
-from dataqualitychecks import check_for_min_max
-from dataqualitychecks import check_for_valid_values
-from dataqualitychecks import check_for_duplicates
-from dataqualitychecks import run_data_quality_check
+from dataqualitychecks import (
+    check_for_duplicates,
+    check_for_min_max,
+    check_for_nulls,
+    check_for_valid_values,
+    run_data_quality_check,
+)
+from tabulate import tabulate
 
 # connect to database
-pgpassword = os.environ.get('POSTGRES_PASSWORD')
+pgpassword = os.environ.get("POSTGRES_PASSWORD")
 conn = psycopg2.connect(
-		user = "postgres",
-	    password = pgpassword,
-	    host = "localhost",
-	    port = "5432",
-	    database = "billingDW")
+    user="postgres",
+    password=pgpassword,
+    host="localhost",
+    port="5432",
+    database="billingDW",
+)
 
 print("Connected to data warehouse")
 
-#Start of data quality checks
+# Start of data quality checks
 results = []
-tests = {key:value for key,value in mytests.__dict__.items() if key.startswith('test')}
+tests = {
+    key: value for key, value in mytests.__dict__.items() if key.startswith("test")
+}
 
-for testname,test in tests.items():
-    test['conn'] = conn
+for testname, test in tests.items():
+    test["conn"] = conn
     results.append(run_data_quality_check(**test))
 
 # #print(results)

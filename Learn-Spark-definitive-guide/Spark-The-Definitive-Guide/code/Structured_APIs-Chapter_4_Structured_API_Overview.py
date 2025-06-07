@@ -10,8 +10,8 @@ spark.range(2).collect()
 # COMMAND ----------
 
 from pyspark.sql.types import *
+
 b = ByteType()
 
 
 # COMMAND ----------
-

@@ -11,7 +11,7 @@
 # sortedPoints = sorted(points2D) # Sort basis on the first value then the subsequent values
 # print(sortedPoints)
 
-# # Using Lambda 
+# # Using Lambda
 
 # def sort_basis_y(x):
 #     return x[1]
@@ -28,36 +28,34 @@
 
 # map(function, sequence)
 
-a = [1,2,3,4]
+a = [1, 2, 3, 4]
 
-b = list(map(lambda x:x*2, a))
+b = list(map(lambda x: x * 2, a))
 
 print(b)
 
 # List Comprehension
 
-c = [x*2 for x in a]
+c = [x * 2 for x in a]
 
 print(c)
 
 # Filter Function
 # filter(function, sequence)
 
-b = list(filter(lambda x : x%2==0, a)) # get only the even number
+b = list(filter(lambda x: x % 2 == 0, a))  # get only the even number
 
 print(b)
 
-c = [x for x in a if x%2==0]
+c = [x for x in a if x % 2 == 0]
 
 print(c)
 
 # Reduce --> Only Reduce a single Value
-# reduce(function, sequence) 
+# reduce(function, sequence)
 
 from functools import reduce
 
-product_a = reduce(lambda x,y : x*y, a)
+product_a = reduce(lambda x, y: x * y, a)
 
 print(product_a)
-
-

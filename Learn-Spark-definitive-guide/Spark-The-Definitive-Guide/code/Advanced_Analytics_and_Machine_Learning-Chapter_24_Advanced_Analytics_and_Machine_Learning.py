@@ -1,4 +1,5 @@
 from pyspark.ml.linalg import Vectors
+
 denseVec = Vectors.dense(1.0, 2.0, 3.0)
 size = 3
 idx = [1, 2] # locations of non-zero elements in vector
@@ -15,6 +16,7 @@ df.orderBy("value2").show()
 # COMMAND ----------
 
 from pyspark.ml.feature import RFormula
+
 supervised = RFormula(formula="lab ~ . + color:value1 + color:value2")
 
 
@@ -33,6 +35,7 @@ train, test = preparedDF.randomSplit([0.7, 0.3])
 # COMMAND ----------
 
 from pyspark.ml.classification import LogisticRegression
+
 lr = LogisticRegression(labelCol="label",featuresCol="features")
 
 
@@ -60,6 +63,7 @@ lr = LogisticRegression().setLabelCol("label").setFeaturesCol("features")
 # COMMAND ----------
 
 from pyspark.ml import Pipeline
+
 stages = [rForm, lr]
 pipeline = Pipeline().setStages(stages)
 
@@ -67,6 +71,7 @@ pipeline = Pipeline().setStages(stages)
 # COMMAND ----------
 
 from pyspark.ml.tuning import ParamGridBuilder
+
 params = ParamGridBuilder()\
   .addGrid(rForm.formula, [
     "lab ~ . + color:value1",
@@ -79,6 +84,7 @@ params = ParamGridBuilder()\
 # COMMAND ----------
 
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
+
 evaluator = BinaryClassificationEvaluator()\
   .setMetricName("areaUnderROC")\
   .setRawPredictionCol("prediction")\
@@ -88,6 +94,7 @@ evaluator = BinaryClassificationEvaluator()\
 # COMMAND ----------
 
 from pyspark.ml.tuning import TrainValidationSplit
+
 tvs = TrainValidationSplit()\
   .setTrainRatio(0.75)\
   .setEstimatorParamMaps(params)\

@@ -1,7 +1,8 @@
-from threading import Thread, Lock
+from threading import Lock, Thread
 from time import sleep
 
 database_value = 0
+
 
 def increase(lock):
     global database_value
@@ -10,7 +11,7 @@ def increase(lock):
 
     # local_copy = database_value
 
-    # #processing 
+    # #processing
     # local_copy+=1
     # sleep(0.1)
     # database_value =  local_copy
@@ -21,12 +22,13 @@ def increase(lock):
 
     with lock:
         local_copy = database_value
-        #processing 
-        local_copy+=1
+        # processing
+        local_copy += 1
         sleep(0.1)
         database_value = local_copy
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     lock = Lock()
 

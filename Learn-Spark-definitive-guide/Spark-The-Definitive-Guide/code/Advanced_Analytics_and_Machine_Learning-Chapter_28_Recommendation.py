@@ -1,5 +1,6 @@
 from pyspark.ml.recommendation import ALS
 from pyspark.sql import Row
+
 ratings = spark.read.text("/data/sample_movielens_ratings.txt")\
   .rdd.toDF()\
   .selectExpr("split(value , '::') as col")\
@@ -31,6 +32,7 @@ alsModel.recommendForAllItems(10)\
 # COMMAND ----------
 
 from pyspark.ml.evaluation import RegressionEvaluator
+
 evaluator = RegressionEvaluator()\
   .setMetricName("rmse")\
   .setLabelCol("rating")\
@@ -42,6 +44,7 @@ print("Root-mean-square error = %f" % rmse)
 # COMMAND ----------
 
 from pyspark.mllib.evaluation import RegressionMetrics
+
 regComparison = predictions.select("rating", "prediction")\
   .rdd.map(lambda x: (x(0), x(1)))
 metrics = RegressionMetrics(regComparison)
@@ -51,6 +54,7 @@ metrics = RegressionMetrics(regComparison)
 
 from pyspark.mllib.evaluation import RankingMetrics, RegressionMetrics
 from pyspark.sql.functions import col, expr
+
 perUserActual = predictions\
   .where("rating > 2.5")\
   .groupBy("userId")\

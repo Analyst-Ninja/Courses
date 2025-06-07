@@ -13,21 +13,21 @@ spark.range(10).rdd.toDF()
 
 # COMMAND ----------
 
-myCollection = "Spark The Definitive Guide : Big Data Processing Made Simple"\
-  .split(" ")
+myCollection = "Spark The Definitive Guide : Big Data Processing Made Simple".split(" ")
 words = spark.sparkContext.parallelize(myCollection, 2)
 
 
 # COMMAND ----------
 
 words.setName("myWords")
-words.name() # myWords
+words.name()  # myWords
 
 
 # COMMAND ----------
 
+
 def startsWithS(individual):
-  return individual.startswith("S")
+    return individual.startswith("S")
 
 
 # COMMAND ----------
@@ -62,16 +62,18 @@ fiftyFiftySplit = words.randomSplit([0.5, 0.5])
 
 # COMMAND ----------
 
-spark.sparkContext.parallelize(range(1, 21)).reduce(lambda x, y: x + y) # 210
+spark.sparkContext.parallelize(range(1, 21)).reduce(lambda x, y: x + y)  # 210
 
 
 # COMMAND ----------
 
+
 def wordLengthReducer(leftWord, rightWord):
-  if len(leftWord) > len(rightWord):
-    return leftWord
-  else:
-    return rightWord
+    if len(leftWord) > len(rightWord):
+        return leftWord
+    else:
+        return rightWord
+
 
 words.reduce(wordLengthReducer)
 
@@ -83,14 +85,16 @@ words.getStorageLevel()
 
 # COMMAND ----------
 
-words.mapPartitions(lambda part: [1]).sum() # 2
+words.mapPartitions(lambda part: [1]).sum()  # 2
 
 
 # COMMAND ----------
 
+
 def indexedFunc(partitionIndex, withinPartIterator):
-  return ["partition: {} => {}".format(partitionIndex,
-    x) for x in withinPartIterator]
+    return ["partition: {} => {}".format(partitionIndex, x) for x in withinPartIterator]
+
+
 words.mapPartitionsWithIndex(indexedFunc).collect()
 
 
@@ -101,4 +105,3 @@ spark.sparkContext.parallelize(["Hello", "World"], 2).glom().collect()
 
 
 # COMMAND ----------
-

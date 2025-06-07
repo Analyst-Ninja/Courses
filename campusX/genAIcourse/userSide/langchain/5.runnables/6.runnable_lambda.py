@@ -1,8 +1,13 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain.schema.runnable import RunnableLambda, RunnableParallel, RunnableSequence, RunnablePassthrough
 from dotenv import load_dotenv
+from langchain.schema.runnable import (
+    RunnableLambda,
+    RunnableParallel,
+    RunnablePassthrough,
+    RunnableSequence,
+)
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import PromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv("../.env")
 
@@ -10,8 +15,7 @@ load_dotenv("../.env")
 #     return len(text.split())
 
 prompt = PromptTemplate(
-    template="Write a joke about the topic: {topic}",
-    input_variables=['topic']
+    template="Write a joke about the topic: {topic}", input_variables=["topic"]
 )
 
 model = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
@@ -25,11 +29,13 @@ joke_gen_chain = RunnableSequence(prompt, model, parser)
 #     'word_count': RunnableLambda(word_counter)
 # })
 
-parallel_chain = RunnableParallel({
-    'joke': RunnablePassthrough(),
-    'word_count': RunnableLambda(lambda x: len(x.split()))
-})
+parallel_chain = RunnableParallel(
+    {
+        "joke": RunnablePassthrough(),
+        "word_count": RunnableLambda(lambda x: len(x.split())),
+    }
+)
 
 final_chain = RunnableSequence(joke_gen_chain, parallel_chain)
 
-print(final_chain.invoke({'topic':'AI'}))
+print(final_chain.invoke({"topic": "AI"}))

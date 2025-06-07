@@ -1,8 +1,12 @@
 # Creating a SparkSession in Python
 from pyspark.sql import SparkSession
-spark = SparkSession.builder.master("local").appName("Word Count")\
-    .config("spark.some.config.option", "some-value")\
+
+spark = (
+    SparkSession.builder.master("local")
+    .appName("Word Count")
+    .config("spark.some.config.option", "some-value")
     .getOrCreate()
+)
 
 
 # COMMAND ----------
@@ -15,8 +19,7 @@ step2 = step1.selectExpr("id * 5 as id")
 step3 = step2.join(step12, ["id"])
 step4 = step3.selectExpr("sum(id)")
 
-step4.collect() # 2500000000000
+step4.collect()  # 2500000000000
 
 
 # COMMAND ----------
-

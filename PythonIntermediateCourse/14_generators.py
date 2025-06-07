@@ -1,13 +1,15 @@
 # Generators:->
 # Generators return a object that can be iterated over.
-# It generate the items inside the Object Lazily 
+# It generate the items inside the Object Lazily
 # Means it generates the items one at a time, only when required/ asked
 # Much more memmory effiecient when we have deal with the large dataset
+
 
 def my_generator():
     yield 1
     yield 2
     yield 3
+
 
 g = my_generator()
 # print(g)
@@ -71,14 +73,13 @@ g = my_generator()
 # def fibonacci(limit):
 #     a, b = 0,1
 #     while a < limit:
-#         yield a 
+#         yield a
 #         a, b  = b, a + b
 
 # print(list(fibonacci(30)))
 
 # Generator Comprehension
 
-my_generator = (x for x in range(10) if x % 2 ==0)
+my_generator = (x for x in range(10) if x % 2 == 0)
 
 print(tuple(my_generator))
-

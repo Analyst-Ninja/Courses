@@ -1,5 +1,6 @@
 import pandas as pd
-df = pd.DataFrame({"first":range(200), "second":range(50,250)})
+
+df = pd.DataFrame({"first": range(200), "second": range(50, 250)})
 
 
 # COMMAND ----------
@@ -14,4 +15,3 @@ newPDF.head()
 
 
 # COMMAND ----------
-
