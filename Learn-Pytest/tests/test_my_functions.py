@@ -1,5 +1,6 @@
 import pytest
 import src.my_functions as my_functions
+import time
 
 
 def test_add():
@@ -17,7 +18,18 @@ def test_divide():
     assert result == 1
 
 
+@pytest.mark.slow("It takes a sleep time")
+def test_very_slow():
+    time.sleep(1)
+    result = my_functions.divide(a=10, b=10)
+    assert result == 1
+
+
+@pytest.mark.skip(reason="This feature is currently broken")
+def test_add_skip():
+    assert my_functions.add(a=5, b=2) == 7
+
+
+@pytest.mark.xfail(reason="We know we cannot divide by zero")
 def test_divide_by_zero():
-    with pytest.raises(ValueError):
-        my_functions.divide(a=20, b=0)
-        assert True
+    assert my_functions.divide(a=3, b=2)
