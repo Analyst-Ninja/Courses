@@ -1,7 +1,6 @@
 import time
 
 import pytest
-
 import src.my_functions as my_functions
 
 

@@ -2,7 +2,6 @@ from unittest import mock
 
 import pytest
 import requests
-
 from src.service import get_user_from_db, get_users
 
 

@@ -2,7 +2,6 @@
 # It can useful when you have a large codebase with multiple shared objects
 
 import pytest
-
 from src.shapes import Rectangle
 
 
