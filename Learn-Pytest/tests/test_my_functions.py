@@ -1,6 +1,8 @@
-import pytest
-import src.my_functions as my_functions
 import time
+
+import pytest
+
+import src.my_functions as my_functions
 
 
 def test_add():
