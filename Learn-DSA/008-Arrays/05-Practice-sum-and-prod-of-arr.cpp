@@ -1,18 +1,18 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    int arr[5] = {1,2,5,3,4};
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(int);
     int sum = 0;
-    int mul = 1;
-
-    int arrSize = sizeof(arr)/sizeof(int);
-
-    for(int i = 0; i < arrSize; i++) {
+    int prod = 1;
+    for (int i = 0; i < size; i++)
+    {
+        prod *= arr[i];
         sum += arr[i];
-        mul *= arr[i];
     }
 
-    cout << "Sum of Elements " << sum << endl;
-    cout << "Product of Elements " << mul << endl;
+    cout << "Array Sum: " << sum << endl;
+    cout << "Array Product: " << prod << endl;
 }

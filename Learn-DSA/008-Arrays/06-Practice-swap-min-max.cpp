@@ -2,31 +2,32 @@
 #include <climits>
 using namespace std;
 
-int main() {
-    int arr[5] = {1,2,5,3,4};
-    int arrSize = sizeof(arr)/sizeof(int);
-    int min = INT_MAX;
-    int max = INT_MIN;
-    int minIndex = -1;
-    int maxIndex = -1;
+int main()
+{
+    int arr[5] = {1, 2, 5, 3, 4};
+    int arrSize = sizeof(arr) / sizeof(int);
+    int smallest = INT_MAX;
+    int largest = INT_MIN;
+    int smallestIndex;
+    int largestIndex;
 
-    for(int i = 0; i < arrSize; i++) {
-        if(arr[i] < min) {
-            min = arr[i];
-            minIndex = i;
+    for (int i = 0; i < arrSize; i++)
+    {
+        if (arr[i] < smallest)
+        {
+            smallest = arr[i];
+            smallestIndex = i;
         }
-
-        if(arr[i] > max) {
-            max = arr[i];
-            maxIndex = i;
+        if (arr[i] > largest)
+        {
+            largest = arr[i];
+            largestIndex = i;
         }
     }
+    swap(arr[smallestIndex], arr[largestIndex]);
 
-    swap(arr[minIndex], arr[maxIndex]);
-
-    cout << "Changed Array: - ";
-    for(int i = 0; i < arrSize; i++) {
-        cout << arr[i] << " ";
+    for (int i = 0; i < arrSize; i++)
+    {
+        cout << arr[i] << endl;
     }
-    cout << endl;
 }
