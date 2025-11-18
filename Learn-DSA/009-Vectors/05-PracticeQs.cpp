@@ -1,48 +1,47 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-int linerSearch(vector <int> &nums, int valueToSearch) {
-    int index;
-    for (int i = 0; i < nums.size(); i++) {
-        if (nums[i] == valueToSearch) {
-            cout << "Value " << nums[i] << "@ --> " << i << endl;
-            index = i;
-            break;
-        }
+int linearSearch(vector<int> nums, int valueTosearch)
+{
+    int vecSize = sizeof(nums) / sizeof(int);
+    for (int i = 0; i < vecSize; i++)
+    {
+        if (valueTosearch == nums[i])
+            return i;
     }
-
-    return index;
+    return -1;
 }
 
-void reverseVector(vector <int> &nums) {
-    
+void reverseVector(vector<int> &nums)
+{
+    int vecSize = sizeof(nums) / sizeof(int);
     int start = 0;
-    int end = nums.size();
+    int end = vecSize - 1;
 
-    for (int i = start;  i < end / 2 ; i++) {
-        if (start != end) {
-            swap(nums[start], nums[end-1]);
-            start++;
-            end--;
-        }
+    while (start < end)
+    {
+        swap(nums[start], nums[end]);
+        start++;
+        end--;
     }
-
 }
 
-int main() {
-    vector <int> nums = {1,2,3,4,5,6};
-    int valToSearch = 3;
+int main()
+{
+    vector<int> nums = {1, 2, 3, 4, 5, 6};
+    int valToSearch = 5;
 
-    // cout << linerSearch(nums, valToSearch) << endl;
+    cout << linearSearch(nums, valToSearch) << endl;
 
     reverseVector(nums);
 
-    for (int val : nums) {
+    for (int val : nums)
+    {
         cout << val << " ";
     }
     // for (int val : ) {
-    //     cout << val << " "; 
+    //     cout << val << " ";
     // }
     cout << endl;
 }
